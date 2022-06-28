@@ -51,6 +51,10 @@ const Main = styled.main`
   justify-content: space-between;
   align-items: center;
 
+  @media (max-width: 1200px) {
+    padding: 40px;
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -95,12 +99,20 @@ const Main = styled.main`
   h1 {
     font-size: 44px;
     font-weight: 400;
+
+    @media (max-width: 1200px) {
+      font-size: 30px;
+    }
   }
 
   p {
     font-size: 27px;
     font-family: "Candara Light";
     color: black;
+
+    @media (max-width: 1200px) {
+      font-size: 20px;
+    }
   }
   span {
     position: absolute;
@@ -124,10 +136,16 @@ const Main = styled.main`
     transition: all 0.5s;
     font-size: 30px;
     color: #373737;
-    transition: 2s;
+    transition: 0.3s;
+    background-size: 1px 200px;
 
     &:hover {
       cursor: pointer;
+      color: white;
+    }
+
+    &:active {
+      background-position: 100px;
     }
   }
 `;
