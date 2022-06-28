@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as Profile } from "../images/profile.svg";
 import { ReactComponent as Cart } from "../images/cart.svg";
 import styled from "styled-components";
+import { FaBars } from "react-icons/fa";
 
 const Nav = styled.nav`
   display: flex;
@@ -36,28 +37,49 @@ const Nav = styled.nav`
       }
     }
   }
+
+  button {
+    display: none;
+    background: none;
+    border: 0;
+  }
+
+  @media (max-width: 1200px) {
+    button {
+      display: inline;
+    }
+    ul,
+    a {
+      display: none;
+    }
+  }
 `;
 
 export default function Menu() {
+  const [showLinks, setShowLinks] = useState(false);
+
   return (
-    <Nav>
+    <Nav className={`${showLinks ? "active" : ""}`}>
       <ul>
         <li>
-          <a href="#"> home</a>
+          <a href="/"> home</a>
         </li>
         <li>
-          <a href="#">products</a>
+          <a href="/">products</a>
         </li>
         <li>
-          <a href="#">about us</a>
+          <a href="/">about us</a>
         </li>
       </ul>
-      <a href="#">
+      <a href="/">
         <Profile />
       </a>
-      <a href="#">
+      <a href="/">
         <Cart />
       </a>
+      <button onClick={() => setShowLinks(!showLinks)}>
+        <FaBars />
+      </button>
     </Nav>
   );
 }
