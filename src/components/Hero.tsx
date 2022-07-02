@@ -100,7 +100,7 @@ const Main = styled.main`
     font-size: 44px;
     font-weight: 400;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 576px) {
       font-size: 30px;
     }
   }
@@ -110,7 +110,7 @@ const Main = styled.main`
     font-family: "Candara Light";
     color: black;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 576px) {
       font-size: 20px;
     }
   }

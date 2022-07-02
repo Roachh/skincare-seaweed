@@ -87,8 +87,6 @@ const Nav = styled.nav<IProps>`
   }
 `;
 
-const StyledLink = styled(Link)``;
-
 export default function Menu() {
   const [showLinks, setShowLinks] = useState(false);
 
@@ -97,22 +95,21 @@ export default function Menu() {
       <button onClick={() => setShowLinks(!showLinks)}>
         <FaBars />
       </button>
-
       <ul>
         <li>
-          <a href="/">home</a>
+          <Link to="/">home</Link>
         </li>
         <li>
-          <a href="/">products</a>
+          <Link to="/">products</Link>
         </li>
         <li>
-          <a href="/">about us</a>
+          <Link to="/">about us</Link>
         </li>
         <li>
-          <a href="/">{showLinks ? "profile" : <Profile />}</a>
+          <Link to="/">{showLinks ? "profile" : <Profile />}</Link>
         </li>
         <li>
-          <a href="/">{showLinks ? "cart" : <Cart />}</a>
+          <Link to="/">{showLinks ? "cart" : <Cart />}</Link>
         </li>
       </ul>
     </Nav>
