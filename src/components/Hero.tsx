@@ -138,6 +138,7 @@ const Main = styled.main`
     color: #373737;
     transition: 0.3s;
     background-size: 1px 200px;
+    margin-bottom: 20px;
 
     &:hover {
       cursor: pointer;

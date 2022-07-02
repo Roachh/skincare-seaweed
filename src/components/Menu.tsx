@@ -3,16 +3,23 @@ import { ReactComponent as Profile } from "../images/profile.svg";
 import { ReactComponent as Cart } from "../images/cart.svg";
 import styled from "styled-components";
 import { FaBars } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-const Nav = styled.nav`
+interface IProps {
+  showLinks: boolean;
+}
+
+const Nav = styled.nav<IProps>`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 
   ul {
-    width: 300px;
+    width: 400px;
+    height: 30px;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     list-style-type: none;
     font-family: "Candara Light";
     font-size: 20px;
@@ -21,9 +28,6 @@ const Nav = styled.nav`
       color: black;
       text-decoration: none;
     }
-  }
-
-  &:hover {
   }
 
   a {
@@ -45,24 +49,58 @@ const Nav = styled.nav`
   }
 
   @media (max-width: 1200px) {
+    flex-direction: column;
+
     button {
-      display: inline;
+      display: inline-block;
+      font-size: 30px;
+      z-index: 3;
     }
-    ul,
-    a {
-      display: none;
+
+    ul {
+      display: ${({ showLinks }) => (showLinks ? "block" : "none")};
+      background-color: gray;
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      z-index: 2;
+      padding-top: 70px;
+
+      li {
+        width: 100%;
+        padding-left: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid black;
+
+        &:not(:first-child) {
+          padding-top: 50px;
+        }
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
 `;
+
+const StyledLink = styled(Link)``;
 
 export default function Menu() {
   const [showLinks, setShowLinks] = useState(false);
 
   return (
-    <Nav className={`${showLinks ? "active" : ""}`}>
+    <Nav showLinks={showLinks}>
+      <button onClick={() => setShowLinks(!showLinks)}>
+        <FaBars />
+      </button>
+
       <ul>
         <li>
-          <a href="/"> home</a>
+          <a href="/">home</a>
         </li>
         <li>
           <a href="/">products</a>
@@ -70,16 +108,13 @@ export default function Menu() {
         <li>
           <a href="/">about us</a>
         </li>
+        <li>
+          <a href="/">{showLinks ? "profile" : <Profile />}</a>
+        </li>
+        <li>
+          <a href="/">{showLinks ? "cart" : <Cart />}</a>
+        </li>
       </ul>
-      <a href="/">
-        <Profile />
-      </a>
-      <a href="/">
-        <Cart />
-      </a>
-      <button onClick={() => setShowLinks(!showLinks)}>
-        <FaBars />
-      </button>
     </Nav>
   );
 }
